@@ -14,7 +14,7 @@ module.exports = (app) =>
 
   //when the client post new data its read,push to the existing data and the write to the file
   //localhost:3001/api/notes
-    app.post('api/notes',(req,res) => {
+    /*app.post('/api/notes',(req,res) => {
     let db = fs.readFile('db/db.json');
     db = JSON.parse(db);
     res.json(db);
@@ -27,9 +27,26 @@ module.exports = (app) =>
     db.push(userNote);
     fs.writeFile('db/db.json', JSON.stringify(db));
     res.json(db);
+  });*/
+  app.post('/api/notes',(req,res) => {
+    fs.readFile('db/db.json', (err, data) => {
+      if (err) throw err;
+      let db = JSON.parse(data);
+      let userNote = {
+        title: req.body.title,
+        text: req.body.text,
+        id: uniqid(), //each note have unique id
+      };  
+      //Push the new data
+      db.push(userNote);
+      fs.writeFile('db/db.json', JSON.stringify(db), (err) => {
+        if (err) throw err;
+        res.json(db);
+      });
+    });
   });
 
-  app.delete('/api/notes/:id', (req,res) =>
+  /*app.delete('/api/notes/:id', (req,res) =>
   {
     let db = JSON.parse(fs.readFile('db/db.json'))
     // removing note with id
@@ -37,5 +54,22 @@ module.exports = (app) =>
     // Rewriting note to db.json
     fs.writeFile('db/db.json', JSON.stringify(deleteNotes));
     res.json(deleteNotes);
+  })*/
+  app.delete('/api/notes/:id', (req, res) => {
+    fs.readFile('db/db.json', (err, data) => {
+      if (err) {
+        throw err;
+      }
+      let db = JSON.parse(data);
+      // removing note with id
+      let deleteNotes = db.filter(item => item.id !== req.params.id);
+      // Rewriting note to db.json
+      fs.writeFile('db/db.json', JSON.stringify(deleteNotes), err => {
+        if (err) {
+          throw err;
+        }
+        res.json(deleteNotes);
+      });
+    });
   });
 };

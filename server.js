@@ -16,8 +16,8 @@ app.use(express.urlencoded({ extended: true }));//parse the data and make it ava
 app.use(express.json());//client(json string) changed to js object(server)
 
 //require load external modules 
-require('./routes/apiRoutes')(app);// line is used to import the routes defined in the apiRoutes.js file and make them available in the app object(express) in the server.js file.
-require('./routes/htmlRoutes')(app);
+require('./routes/apiRoute')(app);// line is used to import the routes defined in the apiRoutes.js file and make them available in the app object(express) in the server.js file.
+require('./routes/indexRoute')(app);
 
 //server open at the particular port
 app.listen(PORT, () => {

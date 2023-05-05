@@ -1,15 +1,25 @@
-const express = require('express');//express framework act as server
-const path = require('path');//require is build in function
-const fs = require("fs");
+//imports the Express.js library into your code.
+const express = require('express');
 
-const port =3001;
-const app = express();
+//create an object app to define routes,middleware & other configurations that we apply in your application
+const app =express();
 
-app.use(express.json());
-app.use(express.urlencoded({ extended : true }));
-app.use (express.static(__dirname));//any file in the project directory can be accessed by the serve
 
-app.listen(PORT, function()
-    {
-       console.log("App Listening " + PORT);    
-    });
+// creating environment variable port
+const PORT = process.env.PORT || 3001;
+
+//when server get the request the server will serve that static file to the client.e.x index.html 
+app.use(express.static('public'));// public is the directory name,so the client access all the file comes under the public directory by the navigating the particular url
+
+//Format the data 
+app.use(express.urlencoded({ extended: true }));//parse the data and make it available in the req.body
+app.use(express.json());//client(json string) changed to js object(server)
+
+//require load external modules 
+require('./routes/apiRoutes')(app);// line is used to import the routes defined in the apiRoutes.js file and make them available in the app object(express) in the server.js file.
+require('./routes/htmlRoutes')(app);
+
+//server open at the particular port
+app.listen(PORT, () => {
+    console.log(`Server  Listening to    ${PORT}`);// string interpolation to insert variable dynamically
+  });

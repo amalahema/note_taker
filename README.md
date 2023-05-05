@@ -30,8 +30,9 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 
 The following image shows the web application's appearance and functionality:
 
-![display the front page](./Assets/indexpage.PNG)
-![display all the notes](./Assets/notespage.jpg)
+![display the front page](./Assets/frontindexpage.PNG)
+![display the url in the localhost](./Assets/localhost.PNG)
+![deploy the url in Heroku](./Assets/deployedurlinHeroku.PNG)
 
 
 ### Links

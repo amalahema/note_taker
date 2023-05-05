@@ -32,10 +32,11 @@ The following image shows the web application's appearance and functionality:
 
 ![display the front page](./Assets/indexpage.PNG)
 ![display all the notes](./Assets/notespage.jpg)
-![display the data in the database](./Assets/database%20updated.PNG)
+
 
 ### Links
-Github Url -
+Github URL : https://github.com/amalahema/note_taker
+
 
 ## My Approach
 

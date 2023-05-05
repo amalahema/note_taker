@@ -21,5 +21,5 @@ require('./routes/htmlRoutes')(app);
 
 //server open at the particular port
 app.listen(PORT, () => {
-    console.log(`Server  Listening to    ${PORT}`);// string interpolation
+    console.log(`Server  Listening to    ${PORT}`);// string interpolation to insert variable dynamically
   });

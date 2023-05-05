@@ -38,4 +38,4 @@ module.exports = (app) =>
     fs.writeFile('db/db.json', JSON.stringify(deleteNotes));
     res.json(deleteNotes);
   });
-}
+};
